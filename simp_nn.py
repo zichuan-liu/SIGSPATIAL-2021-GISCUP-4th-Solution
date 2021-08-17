@@ -30,11 +30,11 @@ if gpus:
 tf.keras.backend.clear_session()
 strategy = tf.distribute.MirroredStrategy()
 
-train_rnn_path = r"/home/liuzichuan/kaggle/giscup_2021/giscup_2021/train_fea"
-test_rnn_path = r"/home/liuzichuan/kaggle/giscup_2021/giscup_2021/test_fea"
-train_path = r"/home/liuzichuan/kaggle/giscup_2021/giscup_2021/data_train_feature_lkpro_max_max_max.pkl"###
-test_path = r"/home/liuzichuan/kaggle/giscup_2021/giscup_2021/data_test_feature_lkpro_max_max_max.pkl"###
-submission_path = r"/home/liuzichuan/kaggle/giscup_2021/sample_submission.csv"
+train_rnn_path = r"./giscup_2021/giscup_2021/train_fea"
+test_rnn_path = r"./giscup_2021/giscup_2021/test_fea"
+train_path = r"./giscup_2021/giscup_2021/data_train_feature_lkpro_max_max_max.pkl"###
+test_path = r"./giscup_2021/giscup_2021/data_test_feature_lkpro_max_max_max.pkl"###
+submission_path = r"./giscup_2021/sample_submission.csv"
 
 all_topo_link=np.load('./giscup_2021/all_topo_link_dict.npy',allow_pickle=True).item()
 link_emb_size = len(all_topo_link)
@@ -210,7 +210,7 @@ def tfidf2vec(data,train_rnn_listnum=0, tfidf_size = 16, is_tfidf=is_tfidf,is_sa
             tfidf_matrix = pd.DataFrame(tfidf_matrix.todense())
             tfidf_matrix.columns = ["tfidf_fea_" + str(train_rnn_listnum) + '_' + str(x) for x in range(tfidf_size)]
             tfidf_matrix.to_pickle(
-                    r'/home/liuzichuan/kaggle/giscup_2021/giscup_2021/tfidf_matrix_fea_' + str(train_rnn_listnum) + '.pkl')
+                    r'./giscup_2021/giscup_2021/tfidf_matrix_fea_' + str(train_rnn_listnum) + '.pkl')
             if is_Test:
                 tfidf_matrix = tfidf_matrix.head(148457)
             print( str(train_rnn_listnum), tfidf_matrix.shape)
@@ -218,7 +218,7 @@ def tfidf2vec(data,train_rnn_listnum=0, tfidf_size = 16, is_tfidf=is_tfidf,is_sa
             del tfidf_matrix
             gc.collect()
         else:
-            tfidf_matrix = pd.read_pickle(r'/home/liuzichuan/kaggle/giscup_2021/giscup_2021/tfidf_matrix_fea_' + str(train_rnn_listnum) + '.pkl')  # , nrows = 148457
+            tfidf_matrix = pd.read_pickle(r'./giscup_2021/giscup_2021/tfidf_matrix_fea_' + str(train_rnn_listnum) + '.pkl')  # , nrows = 148457
             if is_Test:
                 tfidf_matrix = tfidf_matrix.head(148457)
             
@@ -280,14 +280,14 @@ def w2v_fea(data, train_rnn_listnum=0, w2v_size=32, is_w2v=is_w2v, is_save_w2v=i
             lkid_vecs.columns = ["w2v_fea_" + str(train_rnn_listnum) + '_' + str(x) for x in range(w2v_size)]
     
             lkid_vecs.to_pickle(
-                r'/home/liuzichuan/kaggle/giscup_2021/giscup_2021/lkid_vecs_fea_' + str(train_rnn_listnum) + '.pkl')
+                r'./giscup_2021/giscup_2021/lkid_vecs_fea_' + str(train_rnn_listnum) + '.pkl')
             if is_Test:
                 lkid_vecs = lkid_vecs.head(148457)
             data = pd.concat([lkid_vecs, data], axis=1)
             del lkid_vecs
             gc.collect()
         else:
-            lkid_vecs = pd.read_pickle(r'/home/liuzichuan/kaggle/giscup_2021/giscup_2021/lkid_vecs_fea_' + str(
+            lkid_vecs = pd.read_pickle(r'./giscup_2021/giscup_2021/lkid_vecs_fea_' + str(
                 train_rnn_listnum) + '.pkl')  # , nrows = 148457
             if is_Test:
                 lkid_vecs = lkid_vecs.head(148457)
@@ -542,4 +542,4 @@ else:
     print("CV score: {:<8.5f}".format(sum(score) / max_iter))
 
 submission['result'] = predictions
-submission.to_csv('subs/simple_wdr_lk_sub.csv',index=False)
+submission.to_csv('./subs/simple_wdr_lk_sub.csv',index=False)
