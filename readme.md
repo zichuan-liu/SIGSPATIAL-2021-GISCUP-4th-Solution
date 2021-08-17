@@ -1,1 +1,3 @@
+https://sigspatial2021.sigspatial.org/sigspatial-cup/
+
 Continuously updating.....
