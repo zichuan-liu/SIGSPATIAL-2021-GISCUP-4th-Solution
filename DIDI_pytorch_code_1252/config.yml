@@ -1,0 +1,3 @@
+data_dir : '/home/mjl/data/giscup_2021_small'
+pkl_dir : './pkl/'
+msg_dir : './msgpack/'
