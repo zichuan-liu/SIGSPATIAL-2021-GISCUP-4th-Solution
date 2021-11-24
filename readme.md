@@ -6,13 +6,10 @@ https://sigspatial2021.sigspatial.org/sigspatial-cup/
 
 三者融合merage.py最终线上得分0.121501172396437，b榜0.12177，排名4/1173 
 
-
-Bibtex formatted citation
-@misc{liu2021multi,
-      title={Multi View Spatial-Temporal Model for Travel Time Estimation}, 
-      author={ZiChuan Liu and Zhaoyang Wu and Meng Wang},
-      year={2021},
-      eprint={2109.07402},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG}
+@inproceedings{liu2021multi,
+  title={Multi-View Spatial-Temporal Model for Travel Time Estimation},
+  author={Liu, Zichuan and Wu, Zhaoyang and Wang, Meng and Zhang, Rui},
+  booktitle={Proceedings of the 29th International Conference on Advances in Geographic Information Systems},
+  pages={646--649},
+  year={2021}
 }
